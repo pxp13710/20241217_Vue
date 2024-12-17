@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <h1>Event</h1>
+
+  <!-- inline event -->
+  <button id="btn01" onclick="alert('Good Morning!!!')">BTN 01</button>
+  <button id="btn02" onclick="btn02Event()">BTN 02</button>
+  <button id="btn03" onclick="btn03Event(event)">BTN 03</button>
+  <button id="btn04" onclick="btn04Event(event, 'green')">BTN 04</button>
+
+  <!-- addEventListener -->
+  <button id="btn05">BTN 05</button>
+  <button id="btn06">BTN 06</button>
+  <button id="btn07">BTN 07</button>
+  <button id="btn08">BTN 08</button>
+  <button id="btn09">BTN 09</button>
+
+
+  <script type="text/javascript">
+    // const btn01 = document.getElementById('btn01');
+    // console.dir(btn01);
+
+    const btn02Event = function () {
+      alert('Hello World!!!');
+    };
+    const btn03Event = function (evt) {
+      evt.target.style.backgroundColor = 'orange';
+    }
+    const btn04Event = function (evt, color) {
+      evt.target.style.backgroundColor = color;
+    }
+
+    // addEventListener
+    document.getElementById('btn05').addEventListener('click', function () {
+      alert('Good Afternoon!!!');
+    });
+
+    const btn06Event = function () {
+      alert('Good Evening!!!');
+    }
+    document.getElementById('btn06').addEventListener('click', btn06Event);
+
+    // 이 방식이 Vue에서 주의할 사항
+    // addEventListener 방식은 호출하는 이벤트 핸들러에 첫번째 매개변수에 항상
+    // event 객체를 묵시적으로 전달해 준다
+    const btn07Event = function (evt) {
+      evt.target.style.backgroundColor = 'orange'
+    }
+    document.getElementById('btn07').addEventListener('click', btn07Event);
+
+    const btn08Event = function (color) {
+      document.getElementById('btn08').style.backgroundColor = color;
+    }
+    // 이벤트 핸들러가 실행할 함수를 재 호출하면서 필요한 매개변수를 전달한다
+    document.getElementById('btn08').addEventListener('click', (evt) => btn08Event('red'));
+
+    const btn09Event = function (color, evt) {
+      evt.target.style.backgroundColor = color;
+    }
+    // 이벤트 핸들러가 실행할 함수를 재 호출하면서 필요한 매개변수를 전달한다
+    document.getElementById('btn09').addEventListener('click', (evt) => btn09Event('red', evt));
+  </script>
+</body>
+
+</html>

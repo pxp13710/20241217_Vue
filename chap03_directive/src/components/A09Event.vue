@@ -9,26 +9,29 @@ export default {
   },
   methods: {
     incTwo() {
-
+      this.num = this.num + 2;
     },
-    incThree(x) {
-
+    incThree(evt) {
+      evt.target.style.backgroundColor = 'orange';
     },
     incFour(x, color, evt) {
-
+      evt.target.style.backgroundColor = color;
+      this.num = this.num + x;
     },
     
     decOne() {
-
+      this.num = this.num - 1;
     },
     decTwo(evt) {
-
+      evt.target.style.backgroundColor = 'lightgreen';
+      this.num = this.num - 2;
     },
     decThree(x) {
-
+      this.num = this.num - x;
     },
-    decFour(x, evt){
-
+    decFour(x, evt, color){
+      this.num = this.num - x;
+      evt.target.style.backgroundColor = color;
     },
 
     outer(evt) {
@@ -70,15 +73,21 @@ export default {
   <div class="mb-3">
     Num: {{ num }}<br />
 
-    <button>+1</button>
-    <button>+2</button>
-    <button>+3</button>
-    <button>+4</button>
+    <!-- inline Event 방식으로 구현 -->
+    <button v-on:click="num = num + 1">+1</button>
+    <button v-on:click="incTwo()">+2</button>
+    <!-- $event는 자바스크립트의 event의 wrapper  -->
+    <button v-on:click="incThree($event)">+3</button>
+    <button v-on:click="incFour(4, 'green', $event)">+4</button>
 
-    <button>-1</button>
-    <button>-2</button>
-    <button>-3</button>
-    <button>-4</button>
+    <!-- addEventListener 방식으로 구현 -->
+    <button @click="decOne">-1</button>
+    <!-- <button @click="decTwo()">(-2)</button> -->    <!-- Error => decTwo($event) -->
+    <button @click="decTwo">-2</button>
+    <button @click="decThree(3)">(-3)</button>        <!-- inline 방식 -->
+    <button @click="(evt) => decThree(3)">-3</button> <!-- addEventListener 방식 -->
+    <button @click="decFour(4, $event, 'red')">(-4)</button>      <!-- inline 방식 -->
+    <button @click="(evt) => decFour(4, evt, 'red')">-4</button>  <!-- addEventListener 방식 -->
 
     <button @click="decOne">once</button>
     <button @click="decOne">Key</button>
