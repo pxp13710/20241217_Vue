@@ -13,6 +13,10 @@ export default {
       this.num -= 1;
     },
   },
+
+  // 일정한 시점마다 Vue가 자동으로 발생시키는 이벤트에 따라 실행될 메서드
+  // LifeCycle method라 한다
+  
   // data, event 초기화 전
   beforeCreate () {
     console.log('beforeCreate');
