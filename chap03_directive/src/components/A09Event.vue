@@ -23,6 +23,7 @@ export default {
       this.num = this.num - 1;
     },
     decTwo(evt) {
+      console.log(evt);
       evt.target.style.backgroundColor = 'lightgreen';
       this.num = this.num - 2;
     },
@@ -39,12 +40,17 @@ export default {
     },
     one(evt) {
       console.log(evt.target, evt.currentTarget);
+      evt.stopPropagation();    // bubbling 단계의 이벤트 실행을 취소
     },
     two(evt) {
       console.log(evt.target, evt.currentTarget);
     },
 
     daum(evt) {
+      // DOM이 빌드될때 추가되는 기본 JavaScript을 실행하지 않도록 지시
+      evt.preventDefault();
+      const result = confirm('이동하시겠습니까');
+      if(result) location.assign('http://daum.net')
       console.log('daum');
     },
     naver() {
@@ -52,16 +58,30 @@ export default {
     },
 
     keyEventOne(evt) {
+      const code = evt.code;
+      const key = evt.key;
+      const keyCode = evt.keyCode;
+      console.log(`Code: ${code}, Key: ${key}, keyCode: ${keyCode}`);
+      console.log(`Shift: ${evt.shiftKey}, Alt: ${evt.altKey}, Ctrl: ${evt.ctrlKey}, Meta: ${evt.metaKey}`);
 
+      if(evt.keyCode === 65 && evt.shiftKey) {
+        location.assign('http://google.com');
+      }
+      if(evt.keyCode === 13) {
+        alert(evt.target.value)
+      }
+      if(evt.keyCode === 27) {
+        evt.target.value = '';
+      }
     },
-    keyEventTwo(evt) {
-
+    keyEventTwo() {
+      location.assign('http://google.com');
     },
     escEvent() {
-
+      this.name = '';
     },
     enterEvent(){
-
+      alert(this.msg);
     },
   },
 };
@@ -89,25 +109,38 @@ export default {
     <button @click="decFour(4, $event, 'red')">(-4)</button>      <!-- inline 방식 -->
     <button @click="(evt) => decFour(4, evt, 'red')">-4</button>  <!-- addEventListener 방식 -->
 
-    <button @click="decOne">once</button>
-    <button @click="decOne">Key</button>
+    <!-- 이벤트의 속성을 @이벤트명.속성 형태로 지정 가능 -->
+
+    <!-- 최초 1번만 이벤트 적용 -->
+    <button @click.once="decTwo">once</button>
+
+    <!-- shift 키를 누르고 클릭해야 이벤트 핸들러가 실행 
+      shift, alt, ctrl, meta, left, middle, right 
+    -->
+    <button @click.shift="decTwo">Key</button>
   </div>
 
   <div id="container" class="mb-3" @click="outer">
     <div id="inner" @click="one">ONE</div>
-    <div id="inner" @click="two">TWO</div>
+
+    <!-- stopPropagation => 상위 이벤트 실행 안함 -->
+    <div id="inner" @click.stop="two">TWO</div>
   </div>
 
   <div class="mb-3">
     <a href="http://www.daum.net" @click="daum">DAUM</a><br />
-    <a href="http://www.naver.com" @click="naver">NAVER</a>
+    <!-- @click.prevent => preventDefault -->
+    <a href="http://www.naver.com" @click.prevent="naver">NAVER</a>
   </div>
 
   <div class="mb-5">
+    <!-- keyup, keydown, keypress -->
     JS: <input type="text" class="form-control" @keyup="keyEventOne" /><br />
-    Vue: <input type="text" class="form-control" @keyup="keyEventTwo" /><br />
-    esc: <input type="text" class="form-control" v-model="name" @keydown="escEvent" /><br />
-    Enter: <input type="text" class="form-control" v-model="msg" @keydown="enterEvent" /><br />
+    Vue: <input type="text" class="form-control" @keyup.a.shift="keyEventTwo" /><br />
+    esc: {{ name }}<br>
+      <input type="text" class="form-control" v-model="name" @keydown.esc="escEvent" /><br />
+    Enter: {{ msg }}<br>
+      <input type="text" class="form-control" v-model="msg" @keydown.enter="enterEvent" /><br />
   </div>
 
 </template>
