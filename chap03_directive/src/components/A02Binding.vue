@@ -41,7 +41,9 @@ export default {
 
 <template>
   <h3>A02 Binding</h3>
-  바인딩 식 내부에서는 식만 사용 가능<br />
+  바인딩 식 내부에서는 식만 사용 가능
+  View Model에 존재하는 값은 this 없이 변수명, 함수명으로 참조한다
+  <br />
   <br />
 
   <div>
@@ -76,18 +78,28 @@ export default {
     <h5>3. 바인딩 관련 지시자</h5>
     바인딩: {{ greet }}<br>
     v-text: <span v-text="'Hello World'"></span><br />
+    v-text: <span v-text="20"></span><br /> <!-- 숫자값 -->
+    v-text: <span v-text="'20'"></span><br /> <!-- 문자값 -->
     v-text: <span v-text="greet"></span><br />
     v-html: <span v-html="greet"></span><br />
-    v-once: <span></span><br />
-    v-pre: <span></span><br />
+
+    <!-- computed로 구현할 수 있음 -->
+    <!-- v-once: <span v-once>{{ greet }}</span><br /> -->
+
+    <!-- {{  }}를 문자로 취급 -->
+    v-pre: <span v-pre> {{ 가 바인딩으로 사용되므로 문자로 표현할 경우</span><br />
     <br />
+
     <button v-on:click="changeName()">Name</button>
-    <button>Change</button>
+    <button @click="num = num + 1">Change</button>
     <br />
   </div>
 
   <div class="mb-5">
-    Data에 존재하지 않는 변수: <br />
-    Data에 존재하지 않는 객체: <br />
+    <!-- 
+      Data에 존재하지 않는 변수(경고): {{ x || 0}}<br />
+      Data에 존재하지 않는 객체(에러): {{ y && y.name }}<br />
+      Data에 존재하지 않는 객체(에러): {{ y?.name }}<br /> 
+    -->
   </div>
 </template>

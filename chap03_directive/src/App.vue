@@ -5,10 +5,16 @@ import A01Comp from './components/A01Component.vue';
 import HelloWorld from './components/HelloWorld.vue';
 import IconCommunity from './components/icons/IconCommunity.vue';
 import A02Binding from './components/A02Binding.vue';
+import A03Attribute from './components/A03Attribute.vue';
+import A04MakeDOM from './components/A04MakeDOM.vue';
+import A05Method from './components/A05Method.vue';
 
 // export default 내부에 선언된 변수, 함수만 template에서 사용 가능
 export default {
-  components: { A01Comp, HelloWorld, IconCommunity, A02Binding },
+  components: { 
+    A01Comp, HelloWorld, IconCommunity, A02Binding, A03Attribute, 
+    A04MakeDOM, A05Method, 
+   },
   data() {
     return {
       x: 10,
@@ -25,6 +31,9 @@ export default {
       Chap03 Directive
     </h1>
 
+    <A05Method></A05Method>
+    <A04MakeDOM></A04MakeDOM>
+    <A03Attribute></A03Attribute>
     <A02Binding></A02Binding>
 
     <img
