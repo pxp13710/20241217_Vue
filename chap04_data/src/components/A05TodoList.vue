@@ -14,6 +14,7 @@ export default {
   data() {
     return {
       todoList,
+      text: '',
     };
   },
   methods: {
@@ -35,6 +36,9 @@ export default {
       let cnt = this.todoList.at(-1) ? this.todoList.at(-1).id + 1 : 1;
       const todo = { id: cnt++, text, done: false };
       this.todoList.push(todo);
+    },
+    changeText(text) {
+      this.text = text;
     }
   }
 };
@@ -44,7 +48,7 @@ export default {
   <h3>A05 TodoList</h3>
 
   <div class="mb-5">
-    <A05TodoForm :addTodo="addTodo"></A05TodoForm>
+    <A05TodoForm :addTodo="addTodo" :text="text" :changeText="changeText"></A05TodoForm>
     <A05TodoTable :todoList="todoList" :updateTodo="updateTodo" :deleteTodo="deleteTodo"></A05TodoTable>
   </div>
 </template>
