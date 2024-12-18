@@ -3,6 +3,8 @@ export default {
   data() {
     return {
       msg: 'Good Morning',
+      isChecked: true,
+      num: '',
       // 제어 가능
       yourStyle: {color: 'orange', fontSize: '20pt', fontWeight: 'bold'},
       yourCSS: 'one two three',
@@ -12,6 +14,10 @@ export default {
     // 수정 불가
     myStyle: () => ({color: 'orange', fontSize: '20pt', fontWeight: 'bold'}),
     myCSS: () => 'one two three',
+    checkValue() {
+      // this를 사용하는 경우 Arrow 함수로 변경 불가 => this 참조가 undefined가 된다
+      return (this.num > 100 || this.num < 0) ? { warning: true } : { warning: false }
+    }
   },
   methods: {
     enterEvent() {
@@ -25,7 +31,8 @@ export default {
     },
     leaveCSSEvent() {
       this.yourCSS = 'one two three';
-    }
+    },
+    
   }
 };
 </script>
@@ -49,17 +56,19 @@ export default {
     <div :class="yourCSS" @mouseenter="enterCSSEvent" @mouseleave="leaveCSSEvent">{{ msg }}</div>
     <br />
 
-    <div :class="{one: false, two: true, three: true}">{{ msg }}</div>
-    <div class="one">{{ msg }}</div>
+    <!-- one, two, three는 변수명이 아닌 CSS의 클래스 이름이다 -->
+    <div :class="{one: isChecked , two: true, three: true}">{{ msg }}</div>
+    <!-- 객체의 key가 변수명인 경우는 []표기법을 사용해야 한다 -->
+    <div :class="{ [myCSS]: isChecked }">{{ msg }}</div>
 
     <div>
-      <input type="checkbox" class="form-check-input" id="check" />{{ ' ' }}
+      <input type="checkbox" class="form-check-input" id="check" v-model="isChecked" />{{ ' ' }}
       <label class="form-check-label" for="check">CHECK</label>
     </div>
   </div>
 
   <div class="mb-5">
-    <input type="number" class="form-control" />
+    <input type="number" class="form-control" v-model="num" :class="checkValue" />
   </div>
 </template>
 
