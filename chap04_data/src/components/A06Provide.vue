@@ -1,4 +1,5 @@
 <script>
+import { computed } from 'vue';
 import A06Inject from './children/A06Inject.vue';
 
 export default {
@@ -18,6 +19,16 @@ export default {
       this.user.age = 100;
     },
   },
+  // 3.X에서 추가됨
+  // provide된 값은 deep 상관없이 자식 컴포넌트에서 바로 참조 가능
+  provide() {
+    return {
+      name: computed(() => this.name),
+      user: computed(() => this.user),
+      changeName: this.changeName,
+      changeUser: this.changeUser
+    }
+  }
 };
 </script>
 
