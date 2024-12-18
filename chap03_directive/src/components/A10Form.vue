@@ -10,17 +10,43 @@ export default {
         checkOne: true,
         checkTwo: '동의',     // true => 동의, false => 동의 안함
         fruit: [],
-        top: ''
+        top: '',
+        language: ['한국어', '스페인어'],
+        command: '',
+        user: {},
+        message: '',
       },
       
     }
   },
   computed: {
     teams: () => ['한화', '기아', '엘지', '삼성', 'KT', '두산', '롯데'],
+    langs: () => ['한국어', '영어', '프랑스어', '독일어', '스페인어'],
   },
   methods: {
     sendData() {
       console.log(this.formData);
+
+      const spreadData = {
+        ...this.formData,
+        fruit: [...this.formData.fruit],
+        language: [...this.formData.language],
+        user: { ...this.formData.user }
+      };
+      console.log(spreadData);
+
+      // JavaScript 객체 => JSON Data로 변경
+      const jsonData = JSON.stringify(this.formData);
+      console.log(jsonData);
+
+      // JSON Data => JavaScript 객체로 변환
+      const jsData = JSON.parse(jsonData);
+      console.log(jsData);
+    },
+    changeMessage(evt) {
+      if(evt.target.value.trim().length >= 5) {
+        this.formData.message = evt.target.value.trim();
+      }
     }
   }
 };
@@ -76,24 +102,25 @@ export default {
     </select>
     <br />
 
-    SelectBox Multi: <span class="orange"></span><br />
-    <select class="form-control" multiple>
-      <option></option>
+    SelectBox Multi: <span class="orange">{{ formData.language }}</span><br />
+    <select class="form-control" multiple   v-model="formData.language">
+      <option v-for="item in langs" :key="item">{{ item }}</option>
     </select>
     <br />
 
-    TextArea: <span class="orange"></span>
-    <textarea cols="50" rows="5" class="form-control"></textarea>
+    TextArea: <span class="orange">{{ formData.command }}</span>
+    <textarea cols="50" rows="5" class="form-control" v-model="formData.command"></textarea>
     <br />
 
-    Radio Button Object Value: <span class="orange"></span><br />
-    <input type="radio" name="person" />놀부 <br />
-    <input type="radio" name="person" />흥부 <br />
-    <input type="radio" name="person" />방자 <br />
+    Radio Button Object Value: <span class="orange">{{ formData.user }} / {{ formData.user?.name }}</span><br />
+    <input type="radio" name="person" v-bind:value="{name: '놀부', age: 30}" v-model="formData.user" />놀부 <br />
+    <input type="radio" name="person" :value="{name: '흥부', age: 25}" v-model="formData.user" />흥부 <br />
+    <input type="radio" name="person" :value="{name: '방자', age: 20}" v-model="formData.user" />방자 <br />
     <br />
 
-    Text Field: <span class="orange"></span> <br />
-    <input type="text" class="form-control" /><br />
+    <!-- 제약조건이 필요하면 :value 와 @input 이벤트를 이용 -->
+    Text Field: <span class="orange">{{ formData.message }}</span> <br />
+    <input type="text" class="form-control" :value="formData.message" @input="changeMessage" /><br />
 
     <button type="submit" @click.prevent="sendData">SEND</button>
   </form>
