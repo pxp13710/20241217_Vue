@@ -22,7 +22,7 @@ export default {
     getMethod() {
       console.log('getMethod...');
       let total = 0;
-      for(let i = 1; i <= this.num; i++) {
+      for (let i = 1; i <= this.num; i++) {
         total += i;
       }
       return total;
@@ -34,10 +34,9 @@ export default {
     changeNumber(evt) {
       // console.log(evt.target.name, evt.target.value);
       let value = Number(evt.target.value);
-      if(Number.isNaN(value)) value = '';
+      if (Number.isNaN(value)) value = '';
       this[evt.target.name] = value;
     },
-    
   },
   // 계산된 속성이라한다. 읽기 전용 변수다.
   // 기존의 data에 변수를 이용해서 새로운 값을 산출하는 경우 사용
@@ -50,14 +49,14 @@ export default {
     getComputed() {
       console.log('getComputed...');
       let total = 0;
-      for(let i = 1; i <= this.num; i++) {
+      for (let i = 1; i <= this.num; i++) {
         total += i;
       }
       return total;
     },
     // 변경되지 않을 고정값을 사용할 목적으로 정의. v-once를 사용하지 않아도 되는 이유
     sum: () => 10,
-  }
+  },
 };
 </script>
 
@@ -72,20 +71,41 @@ export default {
 
     <!-- form 요소의 name 속성을 할당하고 이 name의 값이 data의 변수명과 동일한 이름으로 정의 -->
     Name: {{ name }}
-    <input type="text" name="name" class="form-control" :value="name" @input="changeString" />
+    <input
+      type="text"
+      name="name"
+      class="form-control"
+      :value="name"
+      @input="changeString" />
     Address: {{ address }}
-    <input type="text" name="address" class="form-control" :value="address" @input="changeString" />
+    <input
+      type="text"
+      name="address"
+      class="form-control"
+      :value="address"
+      @input="changeString" />
 
     Num: {{ num }}
-    <input type="number" name="num" class="form-control" :value="num" @input="changeNumber" />
+    <input
+      type="number"
+      name="num"
+      class="form-control"
+      :value="num"
+      @input="changeNumber" />
     Count: {{ count }}
-    <input type="number" name="count" class="form-control" :value="count" @input="changeNumber" />
+    <input
+      type="number"
+      name="count"
+      class="form-control"
+      :value="count"
+      @input="changeNumber" />
   </div>
   <br />
 
   <div class="mb-5">
     <h5>2. Computed</h5>
     Methods: {{ getMethod() }}<br />
-    Computed: {{ getComputed }}<br /> <!-- () 없이 변수처럼 호출한다 -->
+    Computed: {{ getComputed }}<br />
+    <!-- () 없이 변수처럼 호출한다 -->
   </div>
 </template>

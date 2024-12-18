@@ -47,13 +47,21 @@ export default {
   <h3>A12 Array & Object</h3>
 
   <ul class="list-group">
-    <li class="list-group-item" v-for="(item, i) in names" :key="i">{{ i + 1 }} {{ item }}</li>
+    <li
+      class="list-group-item"
+      v-for="(item, i) in names"
+      :key="i">
+      {{ i + 1 }} {{ item }}
+    </li>
   </ul>
 
   <hr />
 
   <ul class="list-group mb-3">
-    <li class="list-group-item" v-for="(value, key, i) in user" :key="key">
+    <li
+      class="list-group-item"
+      v-for="(value, key, i) in user"
+      :key="key">
       {{ i + 1 }} {{ key.toUpperCase() }} - {{ value }}
     </li>
   </ul>

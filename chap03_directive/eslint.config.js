@@ -18,7 +18,7 @@ export default [
   skipFormatting,
   {
     rules: {
-      "no-unused-vars": "warn"
+      "no-unused-vars": "error"
     }
   }
 ]

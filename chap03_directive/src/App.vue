@@ -20,11 +20,24 @@ import A14ClassModule from './components/A14ClassModule.vue';
 
 // export default 내부에 선언된 변수, 함수만 template에서 사용 가능
 export default {
-  components: { 
-    A01Comp, HelloWorld, IconCommunity, A02Binding, A03Attribute, 
-    A04MakeDOM, A05Method, A06Computed, A07Watch, A08LifeCycle, 
-    A09Event, A10Form, A11Refs, A12ArrayObject, A13StyleClass, A14ClassModule
-   },
+  components: {
+    A01Comp,
+    HelloWorld,
+    IconCommunity,
+    A02Binding,
+    A03Attribute,
+    A04MakeDOM,
+    A05Method,
+    A06Computed,
+    A07Watch,
+    A08LifeCycle,
+    A09Event,
+    A10Form,
+    A11Refs,
+    A12ArrayObject,
+    A13StyleClass,
+    A14ClassModule,
+  },
   data() {
     return {
       x: 10,
@@ -57,18 +70,15 @@ export default {
 
     <img
       src="./assets/images/one.jpg"
-      alt="one"
-    />
+      alt="one" />
     <img
       src="./assets/logo.svg"
       alt="logo"
-      width="100"
-    />
+      width="100" />
 
     <img
       src="/images/tree.jpg"
-      alt="tree"
-    />
+      alt="tree" />
 
     <A01Comp></A01Comp>
 

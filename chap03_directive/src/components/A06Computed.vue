@@ -25,22 +25,23 @@ export default {
     return {
       countries: data.countries,
       countryname: data.countryname,
-    }
+    };
   },
   computed: {
     searchData() {
-      const data = this.countries.filter(item => {
-        if(item.name.includes(this.countryname)) return true; // item이 반환
-        else return false;                                    // item이 반환되지 않음
+      const data = this.countries.filter((item) => {
+        if (item.name.includes(this.countryname))
+          return true; // item이 반환
+        else return false; // item이 반환되지 않음
       });
       return data;
     },
   },
   methods: {
-    searchEvent(){
+    searchEvent() {
       // A11Ref 예제를 미리...
       // 참조하고자 하는 DOM 요소에 ref="참조이름을 할당"
-      // VM에서는 this.$refs.참조이름 형태로 접근 
+      // VM에서는 this.$refs.참조이름 형태로 접근
       // console.log(this.$refs);
 
       //  document.getElementById('search') => this.$refs.searchRef
@@ -51,8 +52,8 @@ export default {
 
       // document.getElementById('search').style.backgroundColor = 'orange';
       // this.countryname = document.getElementById('search').value;
-    }
-  }
+    },
+  },
 };
 </script>
 
@@ -60,9 +61,19 @@ export default {
   <h3>A06 Computed</h3>
 
   <div class="input-group">
-    <input type="text" name="search" id="search" class="form-control" ref="searchRef" />
+    <input
+      type="text"
+      name="search"
+      id="search"
+      class="form-control"
+      ref="searchRef" />
     <div class="input-group-append">
-      <button class="btn btn-primary" @click="searchEvent"  ref="btnRef">SEARCH</button>
+      <button
+        class="btn btn-primary"
+        @click="searchEvent"
+        ref="btnRef">
+        SEARCH
+      </button>
     </div>
   </div>
   <br />
@@ -77,7 +88,9 @@ export default {
       </tr>
     </thead>
     <tbody>
-      <tr v-for="item in searchData" :key="item.no">
+      <tr
+        v-for="item in searchData"
+        :key="item.no">
         <td>{{ item.no }}</td>
         <td>{{ item.name }}</td>
         <td>{{ item.capital }}</td>

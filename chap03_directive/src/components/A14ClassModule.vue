@@ -31,12 +31,22 @@ export default {
   </div>
 
   <div class="mb-3">
-    <div :class="{ [$style.one]: isChecked, [$style.two]: true, [$style.three]: true,}">{{ msg }}</div>
-    <div :class="{ [myCSS] : isChecked }">{{ msg }}</div>
+    <div :class="{ [$style.one]: isChecked, [$style.two]: true, [$style.three]: true }">
+      {{ msg }}
+    </div>
+    <div :class="{ [myCSS]: isChecked }">{{ msg }}</div>
 
     <div>
-      <input type="checkbox" class="form-check-input" id="check" v-model="isChecked" />{{ ' ' }}
-      <label class="form-check-label" for="check">CHECK</label>
+      <input
+        type="checkbox"
+        class="form-check-input"
+        id="check"
+        v-model="isChecked" />{{ ' ' }}
+      <label
+        class="form-check-label"
+        for="check"
+        >CHECK</label
+      >
     </div>
   </div>
 
@@ -45,7 +55,13 @@ export default {
 
 <!-- module => CSS의 이름을 변경하고 this.$style이 원래이름: 변경된이름 형태로 관리 -->
 <style module>
-.one { color: orange; }
-.two { font-size: 24pt; }
-.three { font-weight: bold; }
+.one {
+  color: orange;
+}
+.two {
+  font-size: 24pt;
+}
+.three {
+  font-weight: bold;
+}
 </style>

@@ -19,9 +19,8 @@ export default {
       data,
       isChecked: true,
       name: 'nolbu',
-
-    }
-  }
+    };
+  },
 };
 </script>
 
@@ -70,14 +69,16 @@ export default {
       for(let i = 0; i < data.students.length; i++) { 
         const item = data.students[i];
       -->
-      <tr v-for="(item, i) in data.students" v-bind:key="i">
+      <tr
+        v-for="(item, i) in data.students"
+        v-bind:key="i">
         <td>{{ i }}</td>
         <td>{{ item.name }}</td>
         <td>{{ item.age }}</td>
         <td>{{ item.kor }}</td>
         <td>{{ item.eng }}</td>
       </tr>
-    <!-- } -->
+      <!-- } -->
     </tbody>
 
     <tbody>
@@ -87,7 +88,9 @@ export default {
 
         이 경우 template 가상 태그로 v-for부터 먼저 구현
       -->
-      <template  v-for="(item, i) in data.students" v-bind:key="i">
+      <template
+        v-for="(item, i) in data.students"
+        v-bind:key="i">
         <tr v-if="item.kor >= 90">
           <td>{{ i }}</td>
           <td>{{ item.name }}</td>
@@ -96,33 +99,58 @@ export default {
           <td>{{ item.eng }}</td>
         </tr>
       </template>
-      
     </tbody>
   </table>
   <br />
 
   <ul>
-    <li v-for="item in data.items" :key="item.id">{{ item.id }} / {{ item.name }}</li>
+    <li
+      v-for="item in data.items"
+      :key="item.id">
+      {{ item.id }} / {{ item.name }}
+    </li>
   </ul>
 
   <!-- 객체도 반복 가능 -->
   <ul>
-    <li v-for="(value, key, index) in data.students[0]" :key="key">
+    <li
+      v-for="(value, key, index) in data.students[0]"
+      :key="key">
       {{ index }} - {{ key }} / {{ value }}
     </li>
   </ul>
 
   <!-- 연속된 숫자. 1부터 지정한 수까지 반복.  -->
   <ul>
-    <li v-for="(value, i) in 5" :key="value">{{ i }} - {{ value }}</li>
+    <li
+      v-for="(value, i) in 5"
+      :key="value">
+      {{ i }} - {{ value }}
+    </li>
   </ul>
 
   <!-- Map, Set도 반복 가능 -->
 
   <div class="mb-5">
-    <button class="btn btn-outline-primary btn-sm" @click="isChecked = !isChecked">Check</button>
-    <button class="btn btn-outline-primary btn-sm" @click="name = 'nolbu'">IF</button>
-    <button class="btn btn-outline-primary btn-sm" @click="name = 'hungbu'">Else IF</button>
-    <button class="btn btn-outline-primary btn-sm" @click="name = 'abc'">Else</button><br />
+    <button
+      class="btn btn-outline-primary btn-sm"
+      @click="isChecked = !isChecked">
+      Check
+    </button>
+    <button
+      class="btn btn-outline-primary btn-sm"
+      @click="name = 'nolbu'">
+      IF
+    </button>
+    <button
+      class="btn btn-outline-primary btn-sm"
+      @click="name = 'hungbu'">
+      Else IF
+    </button>
+    <button
+      class="btn btn-outline-primary btn-sm"
+      @click="name = 'abc'">
+      Else</button
+    ><br />
   </div>
 </template>

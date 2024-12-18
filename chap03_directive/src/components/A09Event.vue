@@ -18,7 +18,7 @@ export default {
       evt.target.style.backgroundColor = color;
       this.num = this.num + x;
     },
-    
+
     decOne() {
       this.num = this.num - 1;
     },
@@ -30,7 +30,7 @@ export default {
     decThree(x) {
       this.num = this.num - x;
     },
-    decFour(x, evt, color){
+    decFour(x, evt, color) {
       this.num = this.num - x;
       evt.target.style.backgroundColor = color;
     },
@@ -40,7 +40,7 @@ export default {
     },
     one(evt) {
       console.log(evt.target, evt.currentTarget);
-      evt.stopPropagation();    // bubbling 단계의 이벤트 실행을 취소
+      evt.stopPropagation(); // bubbling 단계의 이벤트 실행을 취소
     },
     two(evt) {
       console.log(evt.target, evt.currentTarget);
@@ -50,7 +50,7 @@ export default {
       // DOM이 빌드될때 추가되는 기본 JavaScript을 실행하지 않도록 지시
       evt.preventDefault();
       const result = confirm('이동하시겠습니까');
-      if(result) location.assign('http://daum.net')
+      if (result) location.assign('http://daum.net');
       console.log('daum');
     },
     naver() {
@@ -62,15 +62,17 @@ export default {
       const key = evt.key;
       const keyCode = evt.keyCode;
       console.log(`Code: ${code}, Key: ${key}, keyCode: ${keyCode}`);
-      console.log(`Shift: ${evt.shiftKey}, Alt: ${evt.altKey}, Ctrl: ${evt.ctrlKey}, Meta: ${evt.metaKey}`);
+      console.log(
+        `Shift: ${evt.shiftKey}, Alt: ${evt.altKey}, Ctrl: ${evt.ctrlKey}, Meta: ${evt.metaKey}`
+      );
 
-      if(evt.keyCode === 65 && evt.shiftKey) {
+      if (evt.keyCode === 65 && evt.shiftKey) {
         location.assign('http://google.com');
       }
-      if(evt.keyCode === 13) {
-        alert(evt.target.value)
+      if (evt.keyCode === 13) {
+        alert(evt.target.value);
       }
-      if(evt.keyCode === 27) {
+      if (evt.keyCode === 27) {
         evt.target.value = '';
       }
     },
@@ -80,7 +82,7 @@ export default {
     escEvent() {
       this.name = '';
     },
-    enterEvent(){
+    enterEvent() {
       alert(this.msg);
     },
   },
@@ -102,12 +104,17 @@ export default {
 
     <!-- addEventListener 방식으로 구현 -->
     <button @click="decOne">-1</button>
-    <!-- <button @click="decTwo()">(-2)</button> -->    <!-- Error => decTwo($event) -->
+    <!-- <button @click="decTwo()">(-2)</button> -->
+    <!-- Error => decTwo($event) -->
     <button @click="decTwo">-2</button>
-    <button @click="decThree(3)">(-3)</button>        <!-- inline 방식 -->
-    <button @click="(evt) => decThree(3)">-3</button> <!-- addEventListener 방식 -->
-    <button @click="decFour(4, $event, 'red')">(-4)</button>      <!-- inline 방식 -->
-    <button @click="(evt) => decFour(4, evt, 'red')">-4</button>  <!-- addEventListener 방식 -->
+    <button @click="decThree(3)">(-3)</button>
+    <!-- inline 방식 -->
+    <button @click="(evt) => decThree(3)">-3</button>
+    <!-- addEventListener 방식 -->
+    <button @click="decFour(4, $event, 'red')">(-4)</button>
+    <!-- inline 방식 -->
+    <button @click="(evt) => decFour(4, evt, 'red')">-4</button>
+    <!-- addEventListener 방식 -->
 
     <!-- 이벤트의 속성을 @이벤트명.속성 형태로 지정 가능 -->
 
@@ -120,29 +127,63 @@ export default {
     <button @click.shift="decTwo">Key</button>
   </div>
 
-  <div id="container" class="mb-3" @click="outer">
-    <div id="inner" @click="one">ONE</div>
+  <div
+    id="container"
+    class="mb-3"
+    @click="outer">
+    <div
+      id="inner"
+      @click="one">
+      ONE
+    </div>
 
     <!-- stopPropagation => 상위 이벤트 실행 안함 -->
-    <div id="inner" @click.stop="two">TWO</div>
+    <div
+      id="inner"
+      @click.stop="two">
+      TWO
+    </div>
   </div>
 
   <div class="mb-3">
-    <a href="http://www.daum.net" @click="daum">DAUM</a><br />
+    <a
+      href="http://www.daum.net"
+      @click="daum"
+      >DAUM</a
+    ><br />
     <!-- @click.prevent => preventDefault -->
-    <a href="http://www.naver.com" @click.prevent="naver">NAVER</a>
+    <a
+      href="http://www.naver.com"
+      @click.prevent="naver"
+      >NAVER</a
+    >
   </div>
 
   <div class="mb-5">
     <!-- keyup, keydown, keypress -->
-    JS: <input type="text" class="form-control" @keyup="keyEventOne" /><br />
-    Vue: <input type="text" class="form-control" @keyup.a.shift="keyEventTwo" /><br />
-    esc: {{ name }}<br>
-      <input type="text" class="form-control" v-model="name" @keydown.esc="escEvent" /><br />
-    Enter: {{ msg }}<br>
-      <input type="text" class="form-control" v-model="msg" @keydown.enter="enterEvent" /><br />
+    JS:
+    <input
+      type="text"
+      class="form-control"
+      @keyup="keyEventOne" /><br />
+    Vue:
+    <input
+      type="text"
+      class="form-control"
+      @keyup.a.shift="keyEventTwo" /><br />
+    esc: {{ name }}<br />
+    <input
+      type="text"
+      class="form-control"
+      v-model="name"
+      @keydown.esc="escEvent" /><br />
+    Enter: {{ msg }}<br />
+    <input
+      type="text"
+      class="form-control"
+      v-model="msg"
+      @keydown.enter="enterEvent" /><br />
   </div>
-
 </template>
 
 <style scoped>
