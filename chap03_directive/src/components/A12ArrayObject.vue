@@ -6,7 +6,40 @@ export default {
       user: { name: 'NolBu', age: 20 },
     };
   },
-  methods: {},
+  methods: {
+    addArray() {
+      const random = Math.ceil(Math.random() * 100);
+      this.names.push(random);
+    },
+    updateArray(idx, value) {
+      this.names[idx] = value;
+    },
+    deleteArray(idx) {
+      this.names.splice(idx, 1);
+    },
+
+    addObject(key, value) {
+      /* // 2.X
+      const newUser = { ...this.user };
+      newUser[key] = value;
+      this.user = newUser;
+      */
+
+      // 객체는 지정된 키 값이 없으면 추가, 존재하면 변경
+      this.user[key] = value;
+    },
+    updateObject(key, value) {
+      // 객체는 지정된 키 값이 없으면 추가, 존재하면 변경
+      this.user[key] = value;
+    },
+    deleteObject(key) {
+      // delete this.user[key];
+      // const newUser = { ...this.user };
+      // this.user = newUser;
+
+      delete this.user[key];
+    },
+  },
 };
 </script>
 
@@ -26,12 +59,12 @@ export default {
   </ul>
 
   <div class="mb-5">
-    <button>ADD Array</button>
-    <button>Change Array</button>
-    <button>Delete Array</button>
+    <button @click="addArray">ADD Array</button>
+    <button @click="(evt) => updateArray(1, 2000)">Change Array</button>
+    <button @click="() => deleteArray(1)">Delete Array</button>
 
-    <button>ADD Object</button>
-    <button>Change Object</button>
-    <button>Delete Object</button>
+    <button @click="() => addObject('address', 'Seoul')">ADD Object</button>
+    <button @click="() => updateObject('address', 'Busan')">Change Object</button>
+    <button @click="() => deleteObject('address')">Delete Object</button>
   </div>
 </template>

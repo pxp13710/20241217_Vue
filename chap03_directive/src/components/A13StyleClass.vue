@@ -3,8 +3,30 @@ export default {
   data() {
     return {
       msg: 'Good Morning',
+      // 제어 가능
+      yourStyle: {color: 'orange', fontSize: '20pt', fontWeight: 'bold'},
+      yourCSS: 'one two three',
     };
   },
+  computed: {
+    // 수정 불가
+    myStyle: () => ({color: 'orange', fontSize: '20pt', fontWeight: 'bold'}),
+    myCSS: () => 'one two three',
+  },
+  methods: {
+    enterEvent() {
+      this.yourStyle.color = 'green';
+    },
+    leaveEvent() {
+      this.yourStyle.color = 'orange';
+    },
+    enterCSSEvent() {
+      this.yourCSS = 'two three';
+    },
+    leaveCSSEvent() {
+      this.yourCSS = 'one two three';
+    }
+  }
 };
 </script>
 
@@ -13,20 +35,21 @@ export default {
     <h3>A13 Style & Class</h3>
 
     <div style="color: orange; font-size: 20pt; font-weight: bold">{{ msg }}</div>
-    <div>{{ msg }}</div>
-    <div>{{ msg }}</div>
-    <div>{{ msg }}</div>
+    <div :style="{color: 'orange', fontSize: '20pt', fontWeight: 'bold'}">{{ msg }}</div>
+    <div :style="myStyle">{{ msg }}</div>
+    <div :style="yourStyle" @mouseenter="enterEvent" @mouseleave="leaveEvent">{{ msg }}</div>
   </div>
 
   <div class="mb-3">
     <h3>Class Binding</h3>
 
-    <div class="one">{{ msg }}</div>
-    <div class="one">{{ msg }}</div>
-    <div class="one">{{ msg }}</div>
+    <div class="one two three">{{ msg }}</div>
+    <div class="one" v-bind:class="'two three'">{{ msg }}</div>
+    <div :class="myCSS">{{ msg }}</div>
+    <div :class="yourCSS" @mouseenter="enterCSSEvent" @mouseleave="leaveCSSEvent">{{ msg }}</div>
     <br />
 
-    <div class="one">{{ msg }}</div>
+    <div :class="{one: false, two: true, three: true}">{{ msg }}</div>
     <div class="one">{{ msg }}</div>
 
     <div>
@@ -40,6 +63,12 @@ export default {
   </div>
 </template>
 
+<!-- 
+  scoped => 해당 컴포넌트의 요소에 중복되지 않는 [data-hash] 속성을 할당하고
+    지정한 style도 one [data-hash] 형태로 지정한다 
+  module => 내가 지정한 CSS 이름을 모두 hash를 추가한 변수명으로 변환    
+    원본 이름은 this.$style이 관리
+-->
 <style scoped>
 .one { color: orange; }
 .two { font-size: 24pt; }

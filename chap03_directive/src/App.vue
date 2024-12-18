@@ -13,13 +13,16 @@ import A07Watch from './components/A07Watch.vue';
 import A08LifeCycle from './components/A08LifeCycle.vue';
 import A09Event from './components/A09Event.vue';
 import A10Form from './components/A10Form.vue';
+import A11Refs from './components/A11Refs.vue';
+import A12ArrayObject from './components/A12ArrayObject.vue';
+import A13StyleClass from './components/A13StyleClass.vue';
 
 // export default 내부에 선언된 변수, 함수만 template에서 사용 가능
 export default {
   components: { 
     A01Comp, HelloWorld, IconCommunity, A02Binding, A03Attribute, 
     A04MakeDOM, A05Method, A06Computed, A07Watch, A08LifeCycle, 
-    A09Event, A10Form, 
+    A09Event, A10Form, A11Refs, A12ArrayObject, A13StyleClass
    },
   data() {
     return {
@@ -37,6 +40,9 @@ export default {
       Chap03 Directive
     </h1>
 
+    <A13StyleClass></A13StyleClass>
+    <A12ArrayObject></A12ArrayObject>
+    <A11Refs></A11Refs>
     <A10Form></A10Form>
     <A09Event></A09Event>
     <A08LifeCycle></A08LifeCycle>
