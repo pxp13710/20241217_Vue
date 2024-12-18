@@ -12,6 +12,9 @@ export default {
     };
   },
   methods: {
+    changeAddress(x) {
+      this.address = x;
+    },
     onAdd(x, y) {
       return `${x} + ${y} = ${x + y}`;
     },
@@ -24,9 +27,25 @@ export default {
 
   <div class="mb-5">
     <!-- 사용자 정의 태그에 HTML의 속성을 적용하면 적용안됨. 값으로 취급됨 -->
-    <A02PropsOne type="date"></A02PropsOne>
-    <A02PropsOne type="time"></A02PropsOne>
+    <A02PropsOne
+      type="date"
+      :arr="arr"
+      :user="user"
+      :onAdd="onAdd"
+      :age="20"
+      :add="address"
+      :changeAddress="changeAddress"
+    ></A02PropsOne>
+    <A02PropsOne type="time" :add="address"></A02PropsOne>
 
-    <A02PropsTwo></A02PropsTwo>
+    <A02PropsTwo
+      type="date"
+      :arr="arr"
+      :user="user"
+      :onAdd="onAdd"
+      :age="20"
+      :add="address"
+      :changeAddress="changeAddress"
+    ></A02PropsTwo>
   </div>
 </template>
