@@ -1,6 +1,13 @@
 <script>
+import { defineAsyncComponent } from 'vue';
+
+const A01About = defineAsyncComponent( () => {
+  // 동적 import
+  return import('./children/A01BannerAbout.vue')
+});
+
 export default {
-  components: {},
+  components: { A01About },
 
 }
 </script>
@@ -8,7 +15,17 @@ export default {
 <template>
   <h3>A04 Suspense - Vue3</h3>
 
-  <div class="mb-5"></div>
+  <div class="mb-5">
+    <!-- default에 지정된 컴포넌트가 로드되기 전까지는 fallback에 지정한 요소가 표시 -->
+    <Suspense>
+      <template #default>
+        <A01About></A01About>
+      </template>
+      <template #fallback>
+        <h3>Loading.....</h3>
+      </template>
+    </Suspense>
+  </div>
 </template>
 
 
