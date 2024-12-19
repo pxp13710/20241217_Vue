@@ -3,7 +3,7 @@ import * as bootstrap from 'bootstrap/dist/js/bootstrap.esm.js'
 import axios from 'axios'
 import Swal from 'sweetalert2'
 
-const baseURL = 'http://localhost:8001/contacts/'
+const baseURL = 'http://localhost:8000/contacts/'
 
 export default {
   data() {

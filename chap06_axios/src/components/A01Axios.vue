@@ -2,7 +2,7 @@
 import axios from 'axios'
 
 // https://sample.bmaster.kro.kr/contacts_long/search/
-const baseURL = 'http://localhost:8001/contacts/'
+const baseURL = 'http://localhost:8000/contacts/'
 
 export default {
   data: function () {
