@@ -26,9 +26,11 @@ export default {
   </div>
 
   <div class="mb-5">
-    <!-- slot props라 한다 -->
-    <slot></slot>
-    <slot name="jumsu"></slot>
+    <!-- slot props라 한다. name 속성은 값 전달 이름으로 사용 불가
+      name은 slot의 이름으로 사용 v-slot:jumsu 형태로 사용 
+    -->
+    <slot nickname="놀부" :user="user" :kor="kor" :eng="eng" :changeKor="changeKor"></slot>
+    <slot name="jumsu"  nickname="흥부" :user="user" :kor="kor" :eng="eng" :changeKor="changeKor"></slot>
   </div>
 </template>
 
