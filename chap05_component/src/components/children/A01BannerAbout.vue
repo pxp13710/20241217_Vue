@@ -1,6 +1,19 @@
 <script>
 export default {
-  
+  name: 'aboutComp',
+  data() {
+    return {
+      today: new Date(),
+      now: new Date(),
+    }
+  },
+  activated() {
+    console.log('About Activated');
+    this.now = new Date();
+  },
+  deactivated() {
+    console.log('About DeActivated');
+  }
 }
 </script>
 
@@ -13,7 +26,8 @@ export default {
       Depending on your use case, Vue can be used in different ways:<br>
       <br>
 
-      Time: {{new Date().toLocaleString()}}
+      Today: {{today.toLocaleString()}}<br>
+      Now: {{now.toLocaleString()}}<br>
     </p>
   </div>
 </template>

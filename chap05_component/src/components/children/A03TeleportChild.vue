@@ -1,4 +1,7 @@
 <script>
+// Teleport => template에 있는 View를 다른 index.html에 지정 위치로 이동
+// portal-vue => template에 있는 View를 다른 Component에 지정 위치로 이동
+
 // npm i portal-vue
 // main.js에 등록부터 해야한다
 export default {
@@ -18,31 +21,33 @@ export default {
 
 <template>
   <form>
-    <button>ONE SHOW</button>
-    <button>TWO SHOW</button>
+    <button @click="showModal('one', true)">ONE SHOW</button>
+    <button @click="showModal('two', true)">TWO SHOW</button>
   </form>
 
-
-    <div class="dialog">
+  <Teleport to="#popup">
+    <div class="dialog" v-show="one">
       <h5>Home Component</h5>
       <p>
         Vue (pronounced /vjuː/, like view) is a JavaScript framework for building user interfaces. 
         It builds on top of standard HTML, CSS and JavaScript, and provides a declarative and 
         component-based programming model that helps you efficiently develop user interfaces, be it simple or complex.<br>
       </p>
-      <button>HIDE</button>
+      <button @click="showModal('one', false)">HIDE</button>
     </div>
+  </Teleport>
 
-
-
-    <div class="dialog">
+  <!-- A01DynamicComp로 이동해서 표시됨 -->
+  <portal to="dist">
+    <div class="dialog" v-show="two">
       <h5>News Component</h5>
       <p>
         With Options API, we define a component's logic using an object of options such as data, methods, and mounted.
         Properties defined by options are exposed on this inside functions, which points to the component instance
       </p>
-      <button>HIDE</button>
+      <button @click="showModal('two', false)">HIDE</button>
     </div>
+  </portal>
 
 </template>
 

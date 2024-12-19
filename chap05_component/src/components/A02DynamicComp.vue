@@ -29,7 +29,18 @@ export default {
     </ul>
 
     <div class="mb-5">
-      <component :is="current"></component>
+      <!-- 
+        KeepAlive로 컴포넌트가 cache화 된다
+        include로 cache화 할 컴포넌트 지정 - 컴포넌트 이름으로 지정(import 이름이 아니다)
+        exclude로 cache화 하지 않을 컴포넌트 지정
+        include, exclude 이름은 , 다음에 스페이스 없이 이어서 지정해야 한다
+        max로 cache화 할 컴포넌트 개수를 지정
+
+        About은 cache화 되어 있음. 일부 내용을 로드될때 변경
+      -->
+      <KeepAlive include="homeComp,aboutComp" max="2">
+        <component :is="current"></component>
+      </KeepAlive>
     </div>
   </div>
 </template>

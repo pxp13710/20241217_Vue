@@ -15,6 +15,8 @@ export default {
 
 <template>
   <h3>A01 Dynamic Component</h3>
+  <!-- A03Teleport에서 지정한 View가 표시될 위치 -->
+  <portal-target name="dist"></portal-target>
 
   <div class="mb-3">
     <component :is="current"></component>
