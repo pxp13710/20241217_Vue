@@ -12,7 +12,7 @@ app.use(function (req, res, next) {
   next()
 });
 
-app.set('port', (process.env.PORT || 8000));
+app.set('port', (process.env.PORT || 8001));
 
 app.use(express.static('public'));
 app.set('views', __dirname + '/views');
