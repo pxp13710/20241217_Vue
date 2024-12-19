@@ -1,9 +1,9 @@
 <script>
-import A01Axios from './components/A01Axios.vue';
-import A02Modal from './components/A02Modal.vue';
+import A01Axios from './components/A01Axios.vue'
+import A02Modal from './components/A02Modal.vue'
 
 export default {
-  components: { A01Axios, A02Modal }
+  components: { A01Axios, A02Modal },
 }
 </script>
 
