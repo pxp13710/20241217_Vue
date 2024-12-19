@@ -1,9 +1,11 @@
 <script>
+// npm i p-min-delay
+import pMinDelay from 'p-min-delay';
 import { defineAsyncComponent } from 'vue';
 
 const A01About = defineAsyncComponent( () => {
   // 동적 import
-  return import('./children/A01BannerAbout.vue')
+  return pMinDelay(import('./children/A01BannerAbout.vue'), 2000);
 });
 
 export default {
