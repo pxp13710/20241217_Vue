@@ -1,7 +1,16 @@
 <script>
 export default {
-  computed: { },
-  methods: { },
+  computed: {
+    contact() {
+      return this.$store.state.contactStore.contact
+    }
+  },
+  methods: {
+    updateContact() {
+      this.$store.dispatch('contactStore/updateContactAction', this.contact);
+      this.$router.push({name: 'list'});
+    }
+  },
 }
 </script>
 
@@ -10,11 +19,17 @@ export default {
     <h3>Update Contact</h3>
 
     <div class="mb-3">
-      Name: <input type="text" class="form-control" name="name" /><br />
-      Tel: <input type="text" class="form-control" name="tel" /><br />
-      Address: <input type="text" class="form-control" name="address" /><br />
+      Name: <input type="text" class="form-control" name="name"
+        :value="contact.name" 
+        @input="(evt) => $store.commit('contactStore/changeContact', evt.target)" /><br />
+      Tel: <input type="text" class="form-control" name="tel"
+        :value="contact.tel"
+        @input="(evt) => $store.commit('contactStore/changeContact', evt.target)" /><br />
+      Address: <input type="text" class="form-control" name="address"
+        :value="contact.address"
+        @input="(evt) => $store.commit('contactStore/changeContact', evt.target)" /><br />
     </div>
     
-    <button class="btn btn-outline-primary">UPDATE</button>
+    <button class="btn btn-outline-primary" @click="updateContact">UPDATE</button>
   </div>
 </template>

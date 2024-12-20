@@ -32,7 +32,11 @@ export default {
       <tbody>
         <tr v-for="contact in contactList.contacts" :key="contact.no">
           <td>{{ contact.no }}</td>
-          <td>{{ contact.name }}</td>
+          <td>
+            <RouterLink :to="{name: 'contact', params: {no: contact.no}}">
+              {{ contact.name }}
+            </RouterLink>
+          </td>
           <td>{{ contact.tel }}</td>
           <td>{{ contact.address }}</td>
           <td><img :src="contact.photo" alt="Photo" width="70" /></td>
