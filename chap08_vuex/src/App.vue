@@ -8,7 +8,7 @@ export default {
 
 <template>
   <div class="m-3">
-    <h1>Chap07 Vuex TodoList / {{ $store.state.count }}</h1>
+    <h1>Chap07 Vuex TodoList / {{ $store.state.countStore.count }}</h1>
 
     <Counter></Counter>
   </div>
