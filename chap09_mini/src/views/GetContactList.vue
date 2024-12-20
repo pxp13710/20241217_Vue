@@ -7,7 +7,10 @@ export default {
       // 3. store의 action 항목에서 getContactListAction이 ajax를 요청해서 
       //    필요한 항목만을 추려낸 후 commit으로 mutations에 값을 전달
       // 4. mutations에서 호출된 함수가 state를 변경
-      // 5. 
+      // 5. state에 상태변수가 변경되었으므로 이 store를 사용하는 컴포넌트에 통보
+      // 6. 통보를 받은 현재 컴포넌트가 리 렌더링
+      //    computed의 값이 변경되면서 변경된 값을 다시 참조
+      // 7. 가져온 값 기반으로 컴포넌트 리 렌더링 => 화면 반영
       return this.$store.state.contactStore.contactList;
     }
   },
