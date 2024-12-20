@@ -1,5 +1,5 @@
 <script>
-// npm i bootstrap axios vuex vue-router sweetalert2
+// npm i bootstrap axios vuex vue-router sweetalert2 vuejs-paginate-next
 import HeaderLink from './components/HeaderLink.vue'
 
 export default {

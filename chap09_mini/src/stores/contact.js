@@ -57,6 +57,14 @@ export default {
         Swal.fire({ title: 'FAIL', text: '데이터 수정 실패', icon: 'error' });
       }
     },
+    CONTACT_UPDATEPHOTO: (state, payload) => {
+      // console.log(state, payload);
+      if (payload.status === 'success') {
+        Swal.fire({ title: 'SUCCESS', text: '사진 수정 성공', icon: 'success' });
+      } else if (payload.status === 'fail') {
+        Swal.fire({ title: 'FAIL', text: '사진 수정 실패', icon: 'error' });
+      }
+    },
   },
   actions: {
     // payload => { no: 1, size: 5 }
@@ -87,6 +95,14 @@ export default {
     addContactAction: (action, payload) => {
       api.addContact(payload)
         .then(resp => action.commit(CONTACT_ADDCONTACT, resp.data))
+        .catch(error => console.error(error))
+    },
+    // payload => { no: '', file: '파일 경로' }
+    updatePhotoAction: (action, payload) => {
+      // console.log(payload);
+      api.updatePhoto(payload.no, payload.file)
+        // 변수로 정의해 놓지 않았으므로 문자로 참조
+        .then(resp => action.commit('CONTACT_UPDATEPHOTO', resp.data))
         .catch(error => console.error(error))
     }
   }

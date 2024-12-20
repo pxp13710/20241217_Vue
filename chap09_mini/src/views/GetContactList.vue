@@ -1,6 +1,12 @@
 <script>
+import Paginate from 'vuejs-paginate-next';
+
 export default {
+  components: { Paginate },
   computed: {
+    page() {
+      return Math.ceil(this.contactList.totalcount / this.contactList.pagesize)
+    },
     contactList() {
       // 1. store의 빈 데이터를 가져와서 먼저 View 완성
       // 2. 이 컴포넌트 mounted 또는 created 시점에 store의 전체 목록 조회 action 발생
@@ -14,7 +20,11 @@ export default {
       return this.$store.state.contactStore.contactList;
     }
   },
-  methods: { },
+  methods: {
+    clickCallback(no) {
+      this.$store.dispatch('contactStore/getContactListAction', {no, size: 5})
+    }
+  },
   mounted() {
     this.$store.dispatch('contactStore/getContactListAction', {no: 1, size: 5})
   },
@@ -39,9 +49,27 @@ export default {
           </td>
           <td>{{ contact.tel }}</td>
           <td>{{ contact.address }}</td>
-          <td><img :src="contact.photo" alt="Photo" width="70" /></td>
+          <td>
+            <RouterLink :to="{name: 'photo', params: {no: contact.no}}">
+              <img :src="contact.photo" alt="Photo" width="70" />
+            </RouterLink>
+          </td>
         </tr>
       </tbody>
     </table>
+
+    <p>
+      <paginate
+        :page-count="page"
+        :page-range="3"
+        :margin-pages="2"
+        :click-handler="clickCallback"
+        :prev-text="'Prev'"
+        :next-text="'Next'"
+        :container-class="'pagination'"
+        :page-class="'page-item'"
+      >
+      </paginate>
+    </p>
   </div>
 </template>
