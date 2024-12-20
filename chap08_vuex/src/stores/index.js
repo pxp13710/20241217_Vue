@@ -1,5 +1,6 @@
 import { createStore } from 'vuex';
 import countStore from './countStore';
+import todoStore from './todoStore';
 
 const store = createStore({
   state: {},
@@ -7,7 +8,7 @@ const store = createStore({
   actions: {},
   getters: {},
   modules: {
-    countStore,
+    countStore, todoStore,
   }
 })
 export default store;
