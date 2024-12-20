@@ -19,7 +19,10 @@ export default {
       state.contact[payload.name] = payload.value;
       // console.log(state.contact);
     },
-
+    // addContact.vue 파일로 진입 시 기존 데이터 삭제
+    clearContact: (state) => {
+      state.contact = { no: '', name: '', tel: '', address: '' }
+    },
 
     // payload => resp.data
     [CONTACT_GETCONTACTLIST]: (state, payload) => {

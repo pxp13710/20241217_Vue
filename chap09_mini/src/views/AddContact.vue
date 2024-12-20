@@ -11,6 +11,9 @@ export default {
       this.$router.push({name: 'list'});
     }
   },
+  created() {
+    this.$store.commit('contactStore/clearContact');
+  }
 }
 </script>
 
