@@ -1,8 +1,14 @@
 <script>
 export default {
-  computed: { },
+  computed: {
+    contactList() {
+      return this.$store.state.contactStore.contactList;
+    }
+  },
   methods: { },
-  mounted() { },
+  mounted() {
+    this.$store.dispatch('contactStore/getContactListAction', {no: 1, size: 5})
+  },
 }
 </script>
 
@@ -15,7 +21,6 @@ export default {
         </tr>
       </thead>
       <tbody>
-        <!--
         <tr v-for="contact in contactList.contacts" :key="contact.no">
           <td>{{ contact.no }}</td>
           <td>{{ contact.name }}</td>
@@ -23,7 +28,6 @@ export default {
           <td>{{ contact.address }}</td>
           <td><img :src="contact.photo" alt="Photo" width="70" /></td>
         </tr>
-        -->
       </tbody>
     </table>
   </div>
