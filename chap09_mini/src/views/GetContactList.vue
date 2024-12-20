@@ -2,6 +2,12 @@
 export default {
   computed: {
     contactList() {
+      // 1. store의 빈 데이터를 가져와서 먼저 View 완성
+      // 2. 이 컴포넌트 mounted 또는 created 시점에 store의 전체 목록 조회 action 발생
+      // 3. store의 action 항목에서 getContactListAction이 ajax를 요청해서 
+      //    필요한 항목만을 추려낸 후 commit으로 mutations에 값을 전달
+      // 4. mutations에서 호출된 함수가 state를 변경
+      // 5. 
       return this.$store.state.contactStore.contactList;
     }
   },
