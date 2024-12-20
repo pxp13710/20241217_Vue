@@ -15,7 +15,11 @@ export default {
     <h3>A05 Contacts</h3>
 
     <div>
-      <span></span>
+      <span v-for="item in contacts" :key="item.no">
+        <RouterLink :to="{name: 'ctxChild', params: {no: item.no}}">
+          {{ item.name }}
+        </RouterLink> | 
+      </span>
     </div>
   </div>
 </template>

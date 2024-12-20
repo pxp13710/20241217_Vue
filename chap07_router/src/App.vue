@@ -18,6 +18,18 @@ export default {
 
       <RouterLink :to="{ path: '/A04Props/1003/흥부/13' }">P 1003</RouterLink> | 
       <RouterLink :to="{ name: 'props', params:{no: 1004, name: '향단', cno: 14} }">P 1004</RouterLink> | 
+
+      <RouterLink :to="{ name: 'contact' }">CONTACT</RouterLink> | 
+
+      <RouterLink to="/A06Query?no=1005&name=방자&address=Seoul#TOP">Q 1005</RouterLink> | 
+      <RouterLink :to="{ name: 'query', query: {no: 1006, name: '홍길동', address: '부산'}, hash: '#MIDDLE' }">Q 1006</RouterLink> | 
+
+      <RouterLink :to="{ name: 'push' }">PUSH</RouterLink> | 
+
+      <RouterLink to="/A08Child">CHILD</RouterLink> | 
+      <RouterLink to="/A08Child/way">WAY</RouterLink> | 
+
+      <RouterLink to="/ABC">ABC</RouterLink> | 
     </div>
 
     <hr>

@@ -7,7 +7,15 @@ export default {
       contacts: contactlist.contacts,
     }
   },
-  computed: {},
+  computed: {
+    person() {
+      const item = this.contacts.find(item => item.no === Number(this.$route.query.no));
+      return item;
+    },
+  },
+  mounted() {
+    // console.log(this.$route);
+  }
 }
 </script>
 
@@ -16,10 +24,10 @@ export default {
     <h3>A06 Query</h3>
 
     <div>
-      Name: <br />
-      No: <br />
-      Person: <br />
-      Hash:
+      Name: {{ $route.query.name }}<br />
+      No: {{ $route.query.no }}<br />
+      Person: {{ person.no }} / {{ person.name }}<br />
+      Hash: {{ $route.hash }}
     </div>
   </div>
 </template>
